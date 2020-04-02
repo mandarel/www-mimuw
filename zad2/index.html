@@ -69,29 +69,34 @@
             <p class="big_delay">Lot z Mediolan do Rzym Fiumicino o 15:45 opóźniony o 20 minut</p>
             <p class="big_delay">Lot z Moskwa Szeremetiewo do Rzym Fiumicino o 15:24 opóźniony o 15 minut</p class="big_delay">
             <p class="small_delay">Lot z Rzym Fiumicino do Warszawa o 15:50 opóźniony o 5 minut</p class="small_delay">
-                <form>
-                    Nowy lot<br>
-                    <select>
-                        <option value="Rzym Fiumicino">Rzym Fiumicino</option>
-                        <option value="Rzym Fiumicino">Warszawa</option>
-                        <option value="Rzym Fiumicino">Moskwa Szeremetiewo</option>
-                        <option value="Rzym Fiumicino">Mediolan</option>
-                        <option value="Rzym Fiumicino">Wuhan</option>
-                    </select><br>
-                    <select>
-                        <option value="Rzym Fiumicino">Rzym Fiumicino</option>
-                        <option value="Rzym Fiumicino">Warszawa</option>
-                        <option value="Rzym Fiumicino">Moskwa Szeremetiewo</option>
-                        <option value="Rzym Fiumicino">Mediolan</option>
-                        <option value="Rzym Fiumicino">Wuhan</option>
-                    </select><br>
-                    <input type="text"><br>
-                    <input type="text"><br>
-                    <input type="date"><br> 
-                    <input type="reset" value="Wyczyść"><br> 
-                    <input type="submit" value="Zarezerwuj">
-                </form>
         </aside>
+        <form class="new-flight">
+            Nowy lot<br>
+            <label for="lot_z">Lot z</label>
+            <select id="lot_z">
+                <option value="Rzym Fiumicino">Rzym Fiumicino</option>
+                <option value="Rzym Fiumicino">Warszawa</option>
+                <option value="Rzym Fiumicino">Moskwa Szeremetiewo</option>
+                <option value="Rzym Fiumicino">Mediolan</option>
+                <option value="Rzym Fiumicino">Wuhan</option>
+            </select><br>
+            <label for="lot_do">Lot do</label>
+            <select id="lot_do">
+                <option value="Rzym Fiumicino">Rzym Fiumicino</option>
+                <option value="Rzym Fiumicino">Warszawa</option>
+                <option value="Rzym Fiumicino">Moskwa Szeremetiewo</option>
+                <option value="Rzym Fiumicino">Mediolan</option>
+                <option value="Rzym Fiumicino">Wuhan</option>
+            </select><br>
+            <label for="imie">Imię</label>
+            <input id="imie" type="text"><br>
+            <label for="nazwisko">Nazwisko</label>
+            <input id="nazwisko" type="text"><br>
+            <label for="data">Data</label>
+            <input id="data" type="date"><br> 
+            <input type="reset" value="Wyczyść"><br> 
+            <input type="submit" value="Zarezerwuj">
+        </form>
   <footer>
       Autor: Krzysztof Rolf
   </footer>
