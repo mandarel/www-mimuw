@@ -111,8 +111,8 @@ nav{
 }
 .cancelled-and-delayed{
     display:grid;
-    align-content: end;	
-    justify-content: end;
+    align-content: start;	
+    justify-content: start;
     grid-area: cancelled;
 }
 .new-flight{
