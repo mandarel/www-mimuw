@@ -1,0 +1,72 @@
+
+header{
+    grid-area:header;
+}
+h1{
+    font-weight: 200;      
+}
+button{
+    background-color: lightskyblue;
+}
+button:hover{
+    background-color: lightblue;
+}
+.znikniety{
+    display: none;
+}
+.wybrany {
+    background-color: pink;
+}
+#wstep{
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+}
+button{
+    background-color: #ccffff;
+}
+#odp1, #odp2, #odp3, #odp4{
+    max-width: 200px;
+    border: rgb(0, 0, 51) 2px solid;
+    margin-left:auto;
+    margin-right:auto;
+
+}
+#przeszłe_wyniki{
+    text-align: left;
+}
+#odp1:hover, #odp2:hover, #odp3:hover, #odp4:hover{
+    background-color: darksalmon;
+}
+main{
+    grid-area:main;
+}
+body{
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    background-image: url("tlo.png");
+    opacity: 20;
+    display: grid; 
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 15px;
+    grid-template-areas: 
+    ". header ."
+    ". main ."
+}
+.nieuruchomionyKoniec{
+    background-color: gray;
+}
+.nieuruchomionyKoniec:hover{
+    background-color: gray;
+}
+.uruchomionyKoniec{
+    background-color: white;
+}
+li:nth-child(even){
+    background-color: lightyellow;
+}
+li:nth-child(odd){
+    background-color: lightblue;
+}

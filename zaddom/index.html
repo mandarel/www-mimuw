@@ -1,0 +1,47 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Testy arytmetyczne</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <main>
+        <header>
+            <h1>
+                Czy umiesz liczyć?
+            </h1>
+        </header>
+        <div id="zacznij_quizy">
+            <button id="zacznij_quiz1" type="button" onclick="zacznijQuiz(1)">Zacznij Quiz 1</button>
+            <button id="zacznij_quiz2" type="button" onclick="zacznijQuiz(2)">Zacznij Quiz 2</button>
+        </div>
+        <div id="quiz" class="znikniety">
+            <div><span id="timerCaly"> </span>|||<span id="timerPytanie"> </span></div>
+            <div id="wstep">Wstep</div>
+            <div id="naglowek">Pytanie <span id="nr_pytania">1</span> z <span id="liczba_pytan">1</span></div>
+            <div id="pytanie">0+0</div>
+            <div id="odp1" onclick="wybrano(1)"></div>
+            <div id="odp2" onclick="wybrano(2)"></div>
+            <div id="odp3" onclick="wybrano(3)"></div>
+            <div id="odp4" onclick="wybrano(4)"></div>
+            <button id="poprzednie" type="button" onclick="cofnij()">Poprzednie</button>
+            <button id="nastepne" type="button" onclick="nastepny()">Następne</button>
+            <button id="koniec" type="button" onclick="zakoncz()">Zakończ</button>
+            <button id="anuluj" type="button" onclick="anuluj()">Anuluj</button>
+            <div id="kara">Kara za błędną odpowiedź - <span id="kara_czas">0</span> s</div>
+        </div>
+        <br><br>
+        <div id="wynik" class="znikniety">
+            <div id="wynik_za_odpowiedzi"></div>
+            <div id="wynik_kary">0</div>
+            <div id="wynik_laczny">0</div>
+            <button id="zapisz_wynik" type="button" onclick="zapiszWynik()">Zapisz wynik bez statystyk</button>
+            <button id="zapisz_wynik_ze_statystykami" type="button" onclick="zapiszWynikZeStatystykami()">Zapisz wynik ze statystykami</button>
+            
+        </div>
+        <div id="przeszłe_wyniki"></div>
+    </main>
+    <script src="main.js"></script> 
+</body>
+</html>
