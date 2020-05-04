@@ -1,5 +1,5 @@
 var jsonString = "{\n\n    \"nazwa\": \"Test przyk\u0142adowy\",\n    \"wstep\": \"Liczy\u0107\u00A0ka\u017Cdy mo\u017Ce\",\n    \"pytania\": [\n        {\n            \"zadanie\": \"2+3\",\n            \"odpowiedzi\": [5, 4, 1, 8],\n            \"kara\": 4,\n            \"wynik\": 5\n        },\n        {\n            \"zadanie\": \"2-(-24:4)\",\n            \"odpowiedzi\": [8, 14, 15, 123],\n            \"kara\": 10,\n            \"wynik\": 8\n        },\n        {\n            \"zadanie\": \"18*(-24:4)\",\n            \"odpowiedzi\": [80, 118, 108, 114],\n            \"kara\": 15,\n            \"wynik\": 108\n        },\n        {\n            \"zadanie\": \"2+2*2\",\n            \"odpowiedzi\": [8, 4, 16, 6],\n            \"kara\": 4,\n            \"wynik\": 6\n        }\n    ]\n}";
-var jsonString2 = "{\n\n    \"nazwa\": \"Szybkie pot\u0119gowanie\",\n    \"wstep\": \"Liczy\u0107\u00A0ka\u017Cdy mo\u017Ce\",\n    \"pytania\": [\n        {\n            \"zadanie\": \"2^2\",\n            \"odpowiedzi\": [5, 4, 1, 8],\n            \"kara\": 4,\n            \"wynik\": 4\n        },\n        {\n            \"zadanie\": \"3^9\",\n            \"odpowiedzi\": [19683, 19681, 19687, 19689],\n            \"kara\": 12,\n            \"wynik\": 19683\n        },\n        {\n            \"zadanie\": \"15^7\",\n            \"odpowiedzi\": [3455, 3375, 3475, 3275],\n            \"kara\": 10,\n            \"wynik\": 3375\n        },\n        {\n            \"zadanie\": \"4^5\",\n            \"odpowiedzi\": [256, 512, 1024, 2048],\n            \"kara\": 4,\n            \"wynik\": 1024\n        }\n    ]\n}";
+var jsonString2 = "{\n\n    \"nazwa\": \"Szybkie pot\u0119gowanie\",\n    \"wstep\": \"Liczy\u0107\u00A0ka\u017Cdy mo\u017Ce\",\n    \"pytania\": [\n        {\n            \"zadanie\": \"2^2\",\n            \"odpowiedzi\": [5, 4, 1, 8],\n            \"kara\": 4,\n            \"wynik\": 4\n        },\n        {\n            \"zadanie\": \"3^9\",\n            \"odpowiedzi\": [19683, 19681, 19687, 19689],\n            \"kara\": 12,\n            \"wynik\": 19683\n        },\n        {\n            \"zadanie\": \"15^3\",\n            \"odpowiedzi\": [3455, 3375, 3475, 3275],\n            \"kara\": 10,\n            \"wynik\": 3375\n        },\n        {\n            \"zadanie\": \"4^5\",\n            \"odpowiedzi\": [256, 512, 1024, 2048],\n            \"kara\": 4,\n            \"wynik\": 1024\n        }\n    ]\n}";
 var wyniki;
 function jestTestem(object) {
     return object.nazwa !== undefined && object.wstep !== undefined && object.pytania !== undefined && object.wynik !== undefined;
@@ -140,7 +140,7 @@ function anuluj() {
     document.getElementById("quiz").className = "znikniety";
     document.getElementById("wynik").className = "znikniety";
     document.getElementById("zacznij_quizy").className = "";
-    document.getElementById("przeszłe-wyniki").className = "znikniety";
+    document.getElementById("przeszłe_wyniki").className = "znikniety";
     document.getElementById("koniec").className = "";
 }
 function zakoncz() {

@@ -230,7 +230,7 @@ function anuluj(){
     document.getElementById("quiz").className = "znikniety";
     document.getElementById("wynik").className = "znikniety";
     document.getElementById("zacznij_quizy").className = "";
-    document.getElementById("przeszłe-wyniki").className = "znikniety";
+    document.getElementById("przeszłe_wyniki").className = "znikniety";
     document.getElementById("koniec").className = "";
 }
 function zakoncz(){
