@@ -1,0 +1,26 @@
+table
+
+    tr
+
+        td Day
+
+        td Price
+
+    each price in meme.price
+
+        tr
+        
+            td
+
+                p= price.day
+            
+            td
+            
+                p= price.price
+
+form(action="/meme/"+meme.id, method="post")
+    input(ype="hidden" name="_csrf" value="{{csrfToken}}")
+
+    input(type="number", name="price")
+
+    button(type="submit")

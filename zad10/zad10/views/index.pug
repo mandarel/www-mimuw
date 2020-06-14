@@ -1,0 +1,31 @@
+html
+
+    head
+
+        title= title
+
+    style
+
+        include style.css
+
+    body
+
+        h1= message
+
+        p= "You visited here for "+ page_views + " time/s"
+
+        img(src="https://miro.medium.com/max/1000/0*JtQzdvYPkPWoPhGL.jpeg")
+
+        h1="Meme list"
+
+        ul
+
+            each meme in memes
+
+                li
+
+                   a(href="meme/" + meme.id) #{meme.name}
+
+                   img(src=meme.url)
+
+                   span= meme.price

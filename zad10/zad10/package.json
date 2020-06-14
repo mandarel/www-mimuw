@@ -1,0 +1,28 @@
+{
+  "name": "zad10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "connect-sqlite3": "^0.9.11",
+    "cookie-parser": "^1.4.5",
+    "csurf": "^1.11.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "pug": "^2.0.4",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.5",
+    "@types/sqlite3": "^3.1.6",
+    "mocha": "^7.1.2",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.3"
+  },
+  "scripts": {
+    "build": "tsc --target es2015 app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

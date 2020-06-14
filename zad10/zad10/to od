@@ -1,0 +1,4 @@
+do zrobienia po powrocie do internetu
+
+npm install sqlite3 --save
+npm install @types/sqlite3 --save-dev
