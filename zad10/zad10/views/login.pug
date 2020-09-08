@@ -1,0 +1,23 @@
+html
+
+    head
+
+        title= title
+
+    style
+
+        include style.css
+
+    body
+
+        h1= message
+
+        form(action="/login", method="post")
+
+            input(type="hidden" name="_csrf" value=csrfToken)
+
+            input(type="text", name="username", placeholder="Nazwa użytkownika")
+
+            input(type="password", name="password", placeholder="Hasło")
+
+            input(type="submit", value="Zaloguj")

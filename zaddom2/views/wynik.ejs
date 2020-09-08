@@ -1,0 +1,56 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Testy arytmetyczne</title>
+    <style>
+      .poprawne{
+          background-color: green;
+      }
+      .niepoprawne{
+          background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+        <header>
+            <h1>
+                Czy umiesz liczyć?
+            </h1>    
+            Czas: <%= czas %> <br>   
+            <ul id="wyniki">
+
+          </ul>
+          <form action="/changepassword" method="get">
+            <input type="submit" value="Zmień hasło">
+          </form> 
+        <form action="/logout" method="post">
+            <input type="submit" value="Wyloguj">
+          </form> 
+    </main>
+    <script>
+      var jsonString = '<%- wynik %>';
+      var jsonString2 = '<%- pytania %>';
+      var czas = <%= czas %>;
+      var pytania =JSON.parse(jsonString2);
+      var wyn = JSON.parse(jsonString);
+
+      console.log(wyn);
+      for(var i = 0; i< wyn.length; i++){
+        var ul = document.getElementById("wyniki");
+        var li = document.createElement("li");
+        if(wyn[i].wybrane===pytania.pytania[i].wynik){
+          li.className="poprawne";
+          li.appendChild(document.createTextNode(wyn[i].wybrane));
+        }
+        else{
+          li.className="niepoprawne";
+          li.appendChild(document.createTextNode(wyn[i].wybrane+ " /" + pytania.pytania[i].wynik));
+        }
+        ul.appendChild(li);
+      }
+    </script>
+</body>
+</html>
+

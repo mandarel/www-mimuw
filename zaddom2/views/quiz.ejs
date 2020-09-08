@@ -1,0 +1,286 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Testy arytmetyczne</title>
+    <style>
+
+header{
+    grid-area:header;
+}
+h1{
+    font-weight: 200;      
+}
+button{
+    background-color: lightskyblue;
+}
+button:hover{
+    background-color: lightblue;
+}
+.znikniety{
+    display: none;
+}
+.wybrany {
+    background-color: pink;
+}
+#wstep{
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+}
+button{
+    background-color: #ccffff;
+}
+#odp1, #odp2, #odp3, #odp4{
+    max-width: 200px;
+    border: rgb(0, 0, 51) 2px solid;
+    margin-left:auto;
+    margin-right:auto;
+
+}
+#przeszłe_wyniki{
+    text-align: left;
+}
+#odp1:hover, #odp2:hover, #odp3:hover, #odp4:hover{
+    background-color: darksalmon;
+}
+main{
+    grid-area:main;
+}
+body{
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    background-image: url("tlo.png");
+    opacity: 20;
+    display: grid; 
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 15px;
+    grid-template-areas: 
+    ". header ."
+    ". main ."
+}
+.nieuruchomionyKoniec{
+    background-color: gray;
+}
+.nieuruchomionyKoniec:hover{
+    background-color: gray;
+}
+.uruchomionyKoniec{
+    background-color: white;
+}
+li:nth-child(even){
+    background-color: lightyellow;
+}
+li:nth-child(odd){
+    background-color: lightblue;
+}
+    </style>
+    <script type="text/javascript">
+      var jsonString = '<%- quiz %>';
+      // do something with obj
+   </script>
+  </head>
+  <body>
+    <main>
+        <header>
+            <h1>
+                Czy umiesz liczyć?
+            </h1>        
+            <div id="quiz" class="">
+              <div><span id="timerCaly"> </span>|||<span id="timerPytanie"> </span></div>
+              <div id="wstep">Wstep</div>
+              <div id="naglowek">Pytanie <span id="nr_pytania">1</span> z <span id="liczba_pytan">1</span></div>
+              <div id="pytanie">0+0</div>
+              <div id="odp1" onclick="wybrano(1)"></div>
+              <div id="odp2" onclick="wybrano(2)"></div>
+              <div id="odp3" onclick="wybrano(3)"></div>
+              <div id="odp4" onclick="wybrano(4)"></div>
+              <button id="poprzednie" type="button" onclick="cofnij()">Poprzednie</button>
+              <button id="nastepne" type="button" onclick="nastepny()">Następne</button>
+              <button id="koniec" type="button" onclick="zakoncz()">Zakończ</button>
+              <div id="kara">Kara za błędną odpowiedź - <span id="kara_czas">0</span> s</div>
+          </div>
+          <form action="/changepassword" method="get">
+            <input type="submit" value="Zmień hasło">
+          </form> 
+        <form action="/logout" method="post">
+            <input type="submit" value="Wyloguj">
+          </form> 
+    </main>
+    <script>
+//var jsonString = "{\n\n    \"nazwa\": \"Test przyk\u0142adowy\",\n    \"wstep\": \"Liczy\u0107\u00A0ka\u017Cdy mo\u017Ce\",\n    \"pytania\": [\n        {\n            \"zadanie\": \"2+3\",\n            \"odpowiedzi\": [5, 4, 1, 8],\n            \"kara\": 4,\n            \"wynik\": 5\n        },\n        {\n            \"zadanie\": \"2-(-24:4)\",\n            \"odpowiedzi\": [8, 14, 15, 123],\n            \"kara\": 10,\n            \"wynik\": 8\n        },\n        {\n            \"zadanie\": \"18*(-24:4)\",\n            \"odpowiedzi\": [80, 118, 108, 114],\n            \"kara\": 15,\n            \"wynik\": 108\n        },\n        {\n            \"zadanie\": \"2+2*2\",\n            \"odpowiedzi\": [8, 4, 16, 6],\n            \"kara\": 4,\n            \"wynik\": 6\n        }\n    ]\n}";
+var jsonString2 = "{\n\n    \"nazwa\": \"Szybkie pot\u0119gowanie\",\n    \"wstep\": \"Liczy\u0107\u00A0ka\u017Cdy mo\u017Ce\",\n    \"pytania\": [\n        {\n            \"zadanie\": \"2^2\",\n            \"odpowiedzi\": [5, 4, 1, 8],\n            \"kara\": 4,\n            \"wynik\": 4\n        },\n        {\n            \"zadanie\": \"3^9\",\n            \"odpowiedzi\": [19683, 19681, 19687, 19689],\n            \"kara\": 12,\n            \"wynik\": 19683\n        },\n        {\n            \"zadanie\": \"15^3\",\n            \"odpowiedzi\": [3455, 3375, 3475, 3275],\n            \"kara\": 10,\n            \"wynik\": 3375\n        },\n        {\n            \"zadanie\": \"4^5\",\n            \"odpowiedzi\": [256, 512, 1024, 2048],\n            \"kara\": 4,\n            \"wynik\": 1024\n        }\n    ]\n}";
+var wyniki;
+function jestTestem(object) {
+    return object.nazwa !== undefined && object.wstep !== undefined && object.pytania !== undefined && object.wynik !== undefined;
+}
+var test1 = JSON.parse(jsonString);
+var test2 = JSON.parse(jsonString2);
+var testy = new Array();
+;
+testy.push(test1);
+testy.push(test2);
+var testPrzykładowy;
+var nrPytania = 0;
+var liczbaPytan = 0;
+var wybrane;
+var countDownDate;
+var czasStartPytania = 0;
+var czasy;
+var numerTimera;
+function dodajCzas() {
+    var w = new Date().getTime();
+    czasy[nrPytania - 1] += w - czasStartPytania;
+    czasStartPytania = w;
+}
+function ustaw() {
+    document.getElementById("nr_pytania").innerHTML = "" + nrPytania;
+    document.getElementById("pytanie").innerHTML = testPrzykładowy.pytania[nrPytania - 1].zadanie;
+    document.getElementById("odp1").innerHTML = "" + testPrzykładowy.pytania[nrPytania - 1].odpowiedzi[0];
+    document.getElementById("odp2").innerHTML = "" + testPrzykładowy.pytania[nrPytania - 1].odpowiedzi[1];
+    document.getElementById("odp3").innerHTML = "" + testPrzykładowy.pytania[nrPytania - 1].odpowiedzi[2];
+    document.getElementById("odp4").innerHTML = "" + testPrzykładowy.pytania[nrPytania - 1].odpowiedzi[3];
+    document.getElementById("kara_czas").innerHTML = "" + testPrzykładowy.pytania[nrPytania - 1].kara;
+    odznaczWszyskie();
+    if (wybrane[nrPytania - 1] !== 0) {
+        for (var i = 0; i < 4; i++) {
+            if (testPrzykładowy.pytania[nrPytania - 1].odpowiedzi[i] === wybrane[nrPytania - 1]) {
+                wybierzMnie(i + 1);
+            }
+        }
+    }
+}
+function zacznijQuiz(numer) {
+    testPrzykładowy = testy[numer - 1];
+   // document.getElementById("wynik").className = "znikniety";
+ //   document.getElementById("przeszłe_wyniki").className = "znikniety";
+ //   document.getElementById("zacznij_quizy").className = "znikniety";
+ //   document.getElementById("koniec").className = "nieuruchomionyKoniec";
+    document.getElementById("quiz").className = "";
+    document.getElementById("wstep").innerHTML = testPrzykładowy.wstep;
+    liczbaPytan = testPrzykładowy.pytania.length;
+    wybrane = new Array(liczbaPytan);
+    czasy = new Array(liczbaPytan);
+    for (var i = 0; i < liczbaPytan; i++) {
+        czasy[i] = 0;
+        wybrane[i] = 0;
+    }
+    countDownDate = new Date().getTime();
+    czasStartPytania = countDownDate;
+    document.getElementById("liczba_pytan").innerHTML = "" + liczbaPytan;
+    nrPytania = 1;
+    ustaw();
+    numerTimera = setInterval(function () { updateTimer(); }, 30);
+}
+function nastepny() {
+    if (liczbaPytan > nrPytania) {
+        dodajCzas();
+        nrPytania++;
+        ustaw();
+    }
+}
+function cofnij() {
+    if (nrPytania > 1) {
+        dodajCzas();
+        nrPytania--;
+        ustaw();
+    }
+}
+function odznaczWszyskie() {
+    document.getElementById("odp1").className = "";
+    document.getElementById("odp2").className = "";
+    document.getElementById("odp3").className = "";
+    document.getElementById("odp4").className = "";
+}
+function wybierzMnie(numer) {
+    document.getElementById("odp" + numer).className = "wybrany";
+}
+function uruchomKoniec() {
+    document.getElementById("koniec").className = "uruchomionyKoniec";
+}
+function wybrano(numer) {
+    odznaczWszyskie();
+    wybierzMnie(numer);
+    wybrane[nrPytania - 1] = parseInt(document.getElementById("odp" + numer).innerHTML, 10);
+    var wszystkie = 1;
+    for (var _i = 0, wybrane_1 = wybrane; _i < wybrane_1.length; _i++) {
+        var i = wybrane_1[_i];
+        if (i === 0) {
+            wszystkie = 0;
+        }
+    }
+    if (wszystkie) {
+        uruchomKoniec();
+    }
+}
+function zapisz(wyn) {
+    document.getElementById("wynik").className = "znikniety";
+    if (localStorage.getItem("wyniki") === null) {
+        wyniki = new Array();
+        wyniki.push(wyn);
+    }
+    else {
+        wyniki = JSON.parse(localStorage.getItem("wyniki"));
+        wyniki.push(wyn);
+    }
+    localStorage.setItem('wyniki', JSON.stringify(wyniki));
+    wyswietlWyniki();
+}
+function zapiszWynik() {
+    var wyn = new Array(2);
+    wyn[0] = czasy[czasy.length - 2];
+    wyn[1] = czasy[czasy.length - 1];
+    zapisz(wyn);
+}
+function zapiszWynikZeStatystykami() {
+    zapisz(czasy);
+}
+function wyswietlWyniki() {
+    document.getElementById("zacznij_quizy").className = "";
+    document.getElementById("przeszłe_wyniki").className = "";
+    document.getElementById("przeszłe_wyniki").innerHTML = "";
+    for (var i = 0; i < wyniki.length; i++) {
+        var newDiv = document.createElement("li");
+        newDiv.innerHTML = "Test wykonany " + new Date(wyniki[i][wyniki[i].length - 2]) + " zajął " + wyniki[i][wyniki[i].length - 1] / 1000;
+        document.getElementById("przeszłe_wyniki").appendChild(newDiv);
+    }
+}
+function anuluj() {
+    clearInterval(numerTimera);
+    document.getElementById("quiz").className = "znikniety";
+    document.getElementById("zacznij_quizy").className = "";
+    document.getElementById("koniec").className = "";
+}
+function zakoncz() {
+    if (document.getElementById("koniec").className === "uruchomionyKoniec") {
+        dodajCzas();
+        clearInterval(numerTimera);
+        document.getElementById("quiz").className = "znikniety";
+     //   document.getElementById("wynik").className = "";
+        var wy = new Array();
+        var w;
+     //   document.getElementById("wynik_za_odpowiedzi").innerHTML = "";
+        for (var i = 0; i < liczbaPytan; i++) {
+            w = new Object();
+            w.wybrane = wybrane[i];
+            w.czasy = czasy[i]/(czasStartPytania - countDownDate);
+            wy.push(w);
+        }
+        var s = JSON.stringify(wy);
+        console.log(s);
+        window.location.href = "/quiz/" + 1 + "/wynik/"+ s;
+    }
+}
+function updateTimer() {
+    var m = new Date().getTime();
+    document.getElementById("timerCaly").innerHTML = "" + ((m - countDownDate) / 1000).toFixed(3);
+    document.getElementById("timerPytanie").innerHTML = "" + ((m - czasStartPytania + czasy[nrPytania - 1]) / 1000).toFixed(3);
+}
+
+zacznijQuiz(1);
+
+    </script> 
+</body>
+</html>

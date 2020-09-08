@@ -29,3 +29,9 @@ html
                    img(src=meme.url)
 
                    span= meme.price
+
+        form(action="/logout", method="post")
+
+            input(type="hidden" name="_csrf" value=csrfToken)
+
+            input(type="submit", value="Wyloguj")

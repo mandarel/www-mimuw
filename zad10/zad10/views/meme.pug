@@ -19,8 +19,9 @@ table
                 p= price.price
 
 form(action="/meme/"+meme.id, method="post")
-    input(ype="hidden" name="_csrf" value="{{csrfToken}}")
+
+    input(type="hidden" name="_csrf" value=csrfToken)
 
     input(type="number", name="price")
 
-    button(type="submit")
+    input(type="submit", value="Zmień cenę")
